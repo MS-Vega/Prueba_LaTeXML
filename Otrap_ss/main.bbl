@@ -1,0 +1,95 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{nuestro}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=c018dbbb071cf85434b7ed27b59b5872}{%
+           family={Almazán},
+           familyi={A\bibinitperiod},
+           given={Gerardo},
+           giveni={G\bibinitperiod}}}%
+        {{hash=f83c054442a90a31437302c39ea0dee1}{%
+           family={Rosell},
+           familyi={R\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=63400552bc6467d62bf7fc65adea65e6}{%
+           family={Vega\bibnamedelima Mendoza},
+           familyi={V\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Mercedes\bibnamedelima Sharon},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Instituto de Matemáticas, UNAM}%
+      }
+      \strng{namehash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{fullhash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{fullhashraw}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{bibnamehash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{authorbibnamehash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{authornamehash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{authorfullhash}{caaaa5acc4f3fca81f58d64a622b7170}
+      \strng{authorfullhashraw}{caaaa5acc4f3fca81f58d64a622b7170}
+      \field{labelalpha}{ARV26}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nuestras notas de \LaTeX}
+      \field{year}{2026}
+    \endentry
+    \entry{lamport}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=5d77435450d10a850a5b58577b9a456b}{%
+           family={Lamport},
+           familyi={L\bibinitperiod},
+           given={Leslie},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley}%
+      }
+      \strng{namehash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{fullhash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{fullhashraw}{5d77435450d10a850a5b58577b9a456b}
+      \strng{bibnamehash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{authorbibnamehash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{authornamehash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{authorfullhash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{authorfullhashraw}{5d77435450d10a850a5b58577b9a456b}
+      \field{labelalpha}{Lam93}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-201-15790-X}
+      \field{title}{\LaTeX. A Document Preparation System}
+      \field{year}{1993}
+      \field{pages}{233\bibrangedash 450}
+      \range{pages}{218}
+      \verb{doi}
+      \verb cualquier.56.4
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
