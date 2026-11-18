@@ -1,0 +1,18 @@
+latexmlpost (LaTeXML version 0.8.8) paginating /Users/mercedesvega/desktop/pbab_ss/main.xml
+(post-processing...
+(Scan main.html processing...
+Scan: DBStatus: 222/0 objects
+ 0.06 sec)
+(MakeBibliography main.html processing...
+MakeBibliography: using bibliographies refs.xml]
+MakeBibliography: 3 bibentries, 2 cited
+Scan: DBStatus: 225/0 objects
+ 0.18 sec)
+(CrossRef main.html processing... 0.04 sec)
+(Graphics main.html processing... 0.13 sec)
+(MathML::Presentation main.html 32 to process...
+converted 32 Maths
+ 0.13 sec)
+(XSLT[using LaTeXML-html5.xsl] main.html processing... 0.07 sec)
+(Writer main.html processing... 0.00 sec) 0.61 sec)
+Postprocessing complete No obvious problems (reqd. 0.89s)
