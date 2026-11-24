@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?latexml searchpaths="/Users/mercedesvega/desktop/pbab_ss"?>
+<?latexml RelaxNGSchema="LaTeXML"?>
+<document xmlns="http://dlmf.nist.gov/LaTeXML">
+  <resource src="LaTeXML.css" type="text/css"/>
+  <bibliography citestyle="numbers" xml:id="bib">
+    <title/>
+    <biblist>
+      <bibentry key="nuestro" type="book" xml:id="bib.bib1">
+        <bib-name role="author">
+          <surname>Almazán</surname>
+          <givenname>Gerardo</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Rosell</surname>
+          <givenname>Pablo</givenname>
+        </bib-name>
+        <bib-name role="author">
+          <surname>Vega Mendoza</surname>
+          <givenname>Mercedes Sharon</givenname>
+        </bib-name>
+        <bib-title>Nuestras notas de <text class="ltx_LaTeX_logo" cssstyle="letter-spacing:-0.2em; margin-right:0.1em">L<text cssstyle="font-variant:small-caps;" yoffset="0.4ex">a</text>T<text cssstyle="font-variant:small-caps;font-size:120%" yoffset="-0.2ex">e</text>X</text></bib-title>
+        <bib-publisher>Instituto de Matemáticas, UNAM</bib-publisher>
+        <bib-date role="publication">2026</bib-date>
+        <bib-data role="self" type="BibTeX">@book{nuestro,
+    author = {Almazán, Gerardo  and  Rosell, Pablo and Vega Mendoza, Mercedes Sharon},
+     title = {Nuestras notas de {\LaTeX}},
+ publisher = {Instituto de Matemáticas, UNAM},
+      year = {2026}}
+</bib-data>
+      </bibentry>
+      <bibentry key="lamport" type="book" xml:id="bib.bib2">
+        <bib-name role="author">
+          <surname>Lamport</surname>
+          <givenname>Leslie</givenname>
+        </bib-name>
+        <bib-title><text class="ltx_LaTeX_logo" cssstyle="letter-spacing:-0.2em; margin-right:0.1em">L<text cssstyle="font-variant:small-caps;" yoffset="0.4ex">a</text>T<text cssstyle="font-variant:small-caps;font-size:120%" yoffset="-0.2ex">e</text>X</text>. A document preparation system</bib-title>
+        <bib-publisher>Addison-Wesley</bib-publisher>
+        <bib-part role="pages">233–450</bib-part>
+        <bib-identifier id="0-201-15790-X" scheme="isbn">ISBN 0-201-15790-X</bib-identifier>
+        <bib-identifier href="https://dx.doi.org/cualquier.56.4" id="cualquier.56.4" scheme="doi">Document</bib-identifier>
+        <bib-date role="publication">1993</bib-date>
+        <bib-data role="self" type="BibTeX">@book{lamport,
+    author = {Lamport, Leslie},
+     title = {{\LaTeX}. {A} Document Preparation System},
+ publisher = {Addison-Wesley},
+     pages = {233-450},
+      isbn = {0-201-15790-X},
+       doi = {cualquier.56.4},
+      year = {1993}}
+</bib-data>
+      </bibentry>
+    </biblist>
+  </bibliography>
+</document>
