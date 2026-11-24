@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 use LaTeXML::Package;
 
-# Nombres por idioma (ampliar según los idiomas que use la editorial)
+# Nombres por idioma
 my %NOMBRES = (
   spanish => {
     '\contentsname' => 'Índice general', '\listfigurename' => 'Índice de figuras',
@@ -15,7 +15,7 @@ my %NOMBRES = (
     '\indexname' => 'Índice alfabético', '\figurename' => 'Figura',
     '\tablename' => 'Tabla', '\abstractname' => 'Resumen',
     '\proofname' => 'Demostración',
-    #Lo de abajo es para traducir la parte de las referencias en la bibliografia
+#Lo de abajo es para traducir la parte de las referencias en la bibliografia
     '\partautorefname' => 'Parte', '\chapterautorefname' => 'Capítulo',
     '\appendixautorefname' => 'Apéndice', '\sectionautorefname' => 'Sección',
     '\subsectionautorefname' => 'Subsección',
@@ -24,8 +24,13 @@ my %NOMBRES = (
     '\figureautorefname' => 'Figura', '\tableautorefname' => 'Tabla',
     '\equationautorefname' => 'Ecuación', '\footnoteautorefname' => 'Nota al pie',
     '\itemautorefname' => 'Elemento', '\pageautorefname' => 'Página',
-    #Cambiar el nombre si se prefiere, era para lo de item en referencias
+#Cambiar el nombre si se prefiere, era para lo de item en referencias
     '\itemtyperefname' => 'Elemento', '\enumtyperefname' => 'Elemento',
+#Cambiar el parentesis de (a) al de a).
+    '\labelenumii' => '\alph{enumii})', '\labelenumiii' => '\roman{enumiii})',
+#Cambiar el nombre de item en las enumeraciones de elementos
+    '\itemtyperefname' => 'Elemento', '\enumtyperefname' => 'Elemento',
+    '\desctyperefname' => 'Elemento',
   },
   english => {
     '\contentsname' => 'Contents', '\chaptername' => 'Chapter',
@@ -77,12 +82,37 @@ DefMacro('\today', sub {
   return Tokenize("$t[3] de $meses[$t[4]] de " . ($t[5] + 1900)); });
 
 
-#Esto se puede borrar no funciono #RawTeX('\makeatletter\def\@seccntformat#1{\csname the#1\endcsname.\quad}\makeatother');
-
 #Intento para poner el puntito en las subsecciones
 foreach my $level (qw(section subsection subsubsection)) {
   DefMacroI('\format@title@' . $level, '{}',
     '\lx@tag[][. ]{\lx@fnum@@{' . $level . '}}#1');
 }
+
+# Símbolo de fin de demostración: cuadro hueco, con clase para alinearlo con CSS
+DefConstructor('\ltx@qed@es',
+  "?#isMath(<ltx:XMTok role='PUNCT'>\x{25A1}</ltx:XMTok>)(<ltx:text class='ltx_qed'>\x{25A1}</ltx:text>)",
+  reversion => '\qed');
+AtBeginDocument(TokenizeInternal('\let\ltx@qed\ltx@qed@es'));
+
+# \Aboxed (mathtools): caja alrededor de ambos lados del & en un align.
+# Se parte el argumento en el primer & (fuera de llaves) y cada mitad lleva sus bordes.
+#DefMacro('\Aboxed@es{}', sub {
+#  my ($gullet, $arg) = @_;
+#  my (@left, @right);
+#  my ($seen, $depth) = (0, 0);
+#  foreach my $t ($arg->unlist) {
+#    if (!$seen && $depth == 0 && $t->equals(T_ALIGN)) { $seen = 1; next; }
+#    $depth++ if $t->equals(T_BEGIN);
+#    $depth-- if $t->equals(T_END);
+#    push(@{ $seen ? \@right : \@left }, $t); }
+#  return (T_CS('\boxed'), T_BEGIN, @left, T_END) unless $seen;
+#  return (T_CS('\Aboxed@left'), T_BEGIN, @left,
+#    T_CS('\vphantom'), T_BEGIN, @right, T_END, T_END,
+#  T_ALIGN,
+#  T_CS('\Aboxed@right'), T_BEGIN, @right,
+#    T_CS('\vphantom'), T_BEGIN, @left, T_END, T_END); });
+#DefConstructor('\Aboxed@left{}',  "<ltx:XMArg enclose='top bottom left'>#1</ltx:XMArg>");
+#DefConstructor('\Aboxed@right{}', "<ltx:XMArg enclose='top bottom right'>#1</ltx:XMArg>");
+#AtBeginDocument(TokenizeInternal('\let\Aboxed\Aboxed@es'));
 
 1;

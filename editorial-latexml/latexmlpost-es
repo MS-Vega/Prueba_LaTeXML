@@ -17,8 +17,29 @@ rm -f "$F"; cp "$ORIG" "$F"; chmod u+w "$F"
 sed -i.bak "s/' and '/' y '/g; s/'and '/'y '/g; s/\"Cited by: \"/\"Citado en: \"/" "$F"
 perl -0pi -e 's/push\(\@stuff, \$sep\);\n\s*push\(\@stuff, \x27y \x27\) if !\$etal && !\@names; \}/if (!\$etal && !\@names) { push(\@stuff, \x27 y \x27); }\n      else { push(\@stuff, \$sep); } }/' "$F"
 perl -0pi -e 's/(push\(\@fnames, \$n->childNodes, \x27, \x27\); \})/$1\n    pop(\@fnames);/' "$F"
+perl -0pi -e 's/sort keys %\{ \$\$entry\{referrers\} \}/grep { !_solo_nocite(\$doc, \$_) } sort keys %{ \$\$entry{referrers} }/' "$F"
+
+# Formato de la bibliografía: año al final y sin paréntesis (ver bibformat.pl)
+perl -0pi -e 's/\n1;\s*\z/\n/' "$F"
+cat "$DIR/bibformat.pl" >> "$F"
 
 grep -q "Citado en" "$F" && grep -q "pop(@fnames)" "$F" && grep -q "' y '" "$F" || \
   echo "Aviso: los cambios no se aplicaron por completo; tu versión de LaTeXML puede ser distinta." >&2
 
-PERL5LIB="$OUT${PERL5LIB:+:$PERL5LIB}" "$LTX" "$@"
+"$PERL" -I"$OUT" -e 'require LaTeXML::Post::MakeBibliography; my $b = $LaTeXML::Post::MakeBibliography::FMT_SPEC{book}; exit(scalar(grep { $_->[3] eq "year" } @{$b->[0]}) ? 1 : 0)' 2>/dev/null \
+    || echo "Aviso: el formato de la bibliografía (año al final) no se aplicó." >&2
+
+PERL5LIB="$OUT${PERL5LIB:+:$PERL5LIB}" "$LTX" --css="$DIR/qed.css" "$@"
+
+# QED dentro de ecuaciones en display: sacarlo del MathML y pasarlo a la celda derecha
+DEST=""; prev=""
+for a in "$@"; do
+  case "$a" in
+    --dest*=*) DEST="${a#*=}" ;;
+  esac
+  case "$prev" in
+    --dest*) case "$prev" in *=*) ;; *) DEST="$a" ;; esac ;;
+  esac
+  prev="$a"
+done
+[ -n "$DEST" ] && [ -f "$DEST" ] && perl -0pi -e 's{(<math[^>]*alttext="[^"]*\\qed"[^>]*>(?:(?!</math>).)*?)<mo[^>]*>\xE2\x96\xA1</mo>(</mrow></math></td>\s*<td class="ltx_eqn_cell ltx_eqn_center_padright")>\s*</td>}{$1$2 style="text-align:right"><span style="font-size:1.4em;line-height:1">\xE2\x96\xA1</span></td>}gs' "$DEST"

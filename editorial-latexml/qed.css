@@ -1,0 +1,3 @@
+.ltx_proof { position: relative; display: flow-root; }
+.ltx_qed   { position: absolute; right: 0; bottom: 0; margin: 0;
+             font-size: 1.6em; line-height: 1; }
