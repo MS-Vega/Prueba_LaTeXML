@@ -52,6 +52,7 @@ convertir_tex() {
 
   # 3) .xml -> .html (la bibliografía se pasa aquí, a latexmlpost-es)
   "$DIR/latexmlpost-es" --dest="${base}.html" \
+          --javascript="$DIR/preview.js" \
           "${bibopt[@]}" "${base}.xml" \
     > "${base}-latexmlpost.log" 2>&1 || return 1
 }
