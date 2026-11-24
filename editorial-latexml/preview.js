@@ -51,7 +51,16 @@ document.addEventListener('DOMContentLoaded', function () {
     clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
     box.innerHTML = '';
-    box.appendChild(clone);
+    let content = clone;
+    // Si el destino es un elemento de lista (p. ej. una entrada de bibliografía),
+    // lo envolvemos en una copia vacía de su lista para conservar los estilos
+    if (/^(LI|DT|DD)$/.test(target.tagName) && target.parentElement) {
+      const wrap = target.parentElement.cloneNode(false);
+      wrap.removeAttribute('id');
+      wrap.appendChild(clone);
+      content = wrap;
+    }
+    box.appendChild(content);
 
     // En pantallas táctiles añadimos un botón para ir al destino
     if (isTouch) {
