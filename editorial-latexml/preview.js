@@ -23,6 +23,15 @@ document.addEventListener('DOMContentLoaded', function () {
       margin-top: 8px;
       font-size: 0.85em;
     }
+    
+    #ref-preview > ul,
+    #ref-preview > ol,
+    #ref-preview > dl {
+      padding-left: 1.5em;   /* prueba con 1em, 2em... hasta que te guste */
+      margin-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   `;
   document.head.appendChild(style);
 
