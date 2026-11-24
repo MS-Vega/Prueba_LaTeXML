@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
       margin-top: 8px;
       font-size: 0.85em;
     }
-    
+
     #ref-preview > ul,
     #ref-preview > ol,
     #ref-preview > dl {
@@ -32,6 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
       margin-top: 0;
       margin-bottom: 0;
     }
+    
+    #ref-preview .ref-source {
+      margin-top: 8px;
+      font-size: 0.75em;
+      color: #777;
+      text-align: left;
+    }
+
   `;
   document.head.appendChild(style);
 
@@ -43,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const SELECTOR = 'a[href^="#"]';
   const isTouch = window.matchMedia('(hover: none)').matches;
   let showTimer, hideTimer;
+
+  // Guardamos el title en otro atributo para que el navegador no muestre su tooltip
+  document.querySelectorAll(SELECTOR).forEach(a => {
+    if (a.hasAttribute('title')) {
+      a.dataset.refTitle = a.getAttribute('title');
+      a.removeAttribute('title');
+    }
+  });
 
   function getLinkTarget(link) {
     if (link.closest('nav, .ltx_toc')) return null;   // ignora el índice
@@ -58,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const clone = target.cloneNode(true);
     clone.removeAttribute('id');
     clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+    clone.querySelectorAll('[title]').forEach(el => el.removeAttribute('title'));
 
     box.innerHTML = '';
     let content = clone;
@@ -79,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
       go.textContent = 'Ir al teorema →';
       go.addEventListener('click', hide);
       box.appendChild(go);
+    }
+    if (link.dataset.refTitle) {
+      const src = document.createElement('div');
+      src.className = 'ref-source';
+      src.textContent = link.dataset.refTitle;
+      box.appendChild(src);
     }
 
     box.style.display = 'block';
